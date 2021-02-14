@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Insert title here</title>
+</h:head>
+<h:body>
+
+<ui:composition template="index.xhtml">
+<ui:define name="content">
+
+<p:growl id="alerta" showDetail="true" />
+    	<h:form>
+    		<!-- Form -->
+    		<p:panel id="formulario" header="Asignación" style="margin-bottom:20px">
+    			<h:panelGrid columns="2">
+    				    	
+    				<p:outputLabel>Nombre:</p:outputLabel>
+				   	<p:inputText value="#{facultadVista.facultad.nombre}" />
+				   	
+				   	<p:outputLabel>Dirección:</p:outputLabel>
+				   	<p:inputText value="#{facultadVista.facultad.direccion}" />
+				   	
+				   	<p:outputLabel>Teléfono:</p:outputLabel>
+				   	<p:inputText value="#{facultadVista.facultad.telefono}" />
+				   	
+				   	<p:outputLabel>Estudiante:</p:outputLabel>
+		               <p:selectOneMenu value="#{facultadVista.estudiante.id}" autoWidth="false" style="width: 100%">
+		               	   <f:selectItem itemLabel="Estudiantes" itemValue="" noSelectionOption="true"/>
+		                   <f:selectItems value="#{facultadVista.listaEstudiantes}" var="est" itemLabel="#{est.nombre} #{est.apellido}" itemValue="#{est.id}"/>                  
+		               </p:selectOneMenu>
+				   	
+				   	<h:panelGrid columns="2">
+					   <p:commandButton update="alerta formulario tabla" action="#{facultadVista.insertarFacultad}" style="width: 100%" value="Guardar/Actualizar">
+					   </p:commandButton>
+					   <p:commandButton value="Cancelar" action="#{facultadVista.limpiar}" update="formulario"></p:commandButton>
+				   </h:panelGrid>
+    			</h:panelGrid>
+    		</p:panel>
+		
+    		<!--  list -->
+    		<div class="card">
+		        <p:dataTable var="row" value="#{facultadVista.listaFacultades}" rowIndexVar="index" paginator="true" rows="10" id="tabla">
+		        
+		            <p:column headerText="Id">
+		                <h:outputText value="#{row.id}"/>
+		            </p:column>
+		
+		            <p:column headerText="Nombre">
+		                <h:outputText value="#{row.nombre}"/>
+		            </p:column>
+		            
+		            <p:column headerText="Dirección">
+		                <h:outputText value="#{row.direccion}"/>
+		            </p:column>
+		            
+		            <p:column headerText="Teléfono">
+		                <h:outputText value="#{row.telefono}"/>
+		            </p:column>
+		            
+		       
+		            
+		            <p:column headerText="Acción" style="text-align:center" width="220">
+			            <p:commandButton action="#{facultadVista.borrarFacultad(row.id)}" update="alerta tabla" value="Borrar" />
+			            <p:commandButton action="#{facultadVista.cargarFacultad(row.id)}" update="@form" value="Editar"/>
+		            </p:column>
+		        </p:dataTable>
+		    </div>
+	    </h:form>
+</ui:define>
+</ui:composition>
+
+</h:body>
+</html>

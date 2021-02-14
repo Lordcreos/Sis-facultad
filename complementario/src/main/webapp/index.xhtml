@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Seguimiento de Stock-Index</title>
+		</f:facet>
+
+
+	</h:head>
+
+	<style>
+html * {
+	font-size: 13px !important;
+}
+
+</style>
+	<h:body>
+
+		<p:layout fullPage="true" styleClass="backgroundless">
+
+			<p:layoutUnit position="north" size="" resizable="false" styleClass="north" 
+				closable="false" collapsible="false">
+				
+				
+				<h:panelGrid columns="1">
+					
+					<p:graphicImage width="110%"
+						value="#{FacesContext.getCurrentInstance}/imagenes/LUBAGO BODEGAS.S.A.jpg" />
+					<h:panelGrid cellpadding="6" width="100%">
+					
+					
+			</h:panelGrid>
+			
+				</h:panelGrid>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="west" size="182" header="Menu"
+				style="border:0;" collapsible="true">
+				<p:menu toggleable="true">
+					<p:submenu label="Ingreso" style="border:0;">
+
+						
+						
+						<p:menuitem icon="fa fa-desktop" value="Facultad" outcome="Facultad" />
+					</p:submenu>
+				
+				</p:menu>
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" size="100%">
+				<ui:insert name="content" />
+
+			</p:layoutUnit>
+
+		</p:layout>
+
+	</h:body>
+
+</f:view>
+</html>
